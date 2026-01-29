@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Email Page</title>
+</head>
+<body>
+    <!--PAID FONT ELCN Header Font: font-family: BentonSansBold, Helvetica, Arial, sans-serif; -->
+     <!-- PAID FONT Body Font:     font-family: BentonSansRegular, Helvetica, Arial, sans-serif;-->
+    <div class="grid-container">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <h2>ELCN</h2>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+
+        </nav>
+        
+        <main class="content">
+            <h1>ELCN Prototype Page</h1>
+            <!-- Simple form for sending email-->
+            <!-- “When the user clicks submit, send the form data to /send using POST.” -->
+
+            
+            
+            <form method="POST" action="/send">
+                <label>
+                    <input type="radio" name="send_type" value="single" checked>
+                    Single email
+                </label>
+
+                <label>
+                    <input type="radio" name="send_type" value="group">
+                    Group email
+                </label>
+
+                <br><br>
+
+                <p>From Email: {{ from_email }}</p>
+
+                <!-- Single Email  -->
+                <div id="single-email-section">
+                    <label> Single Recipient Email:</label><br>
+                    <input type="email" name="email" id="single-email" value="{{ email | default('') }}">
+                </div>
+                <br><br>
+               
+                <!-- Group Email -->
+                 <div id="group-email-section">
+                     <label>Recipient Group</label>
+                     <select name="group" id="group-email">
+                        <option value="">-- Select a group --</option>
+                        <option value="volunteers">Volunteers</option>
+                        <option value="coordinators">Coordinators</option>
+                        <option value="speakers">Speakers</option>
+                     </select>
+
+                     <!-- Output area to show emails of selected groups -->
+                    <div class="group-email-show" id="group-email-show-id">
+                        
+                    </div>
+                 </div>
+
+                <br><br>
+
+                <!-- Subject -->
+                <label>Subject</label>
+                <input type="text" name="subject" value="{{ subject | default('') }}"required>
+                 <br>
+                 <!-- Message -->
+                <label>Message:</label><br>
+                <textarea 
+                name="message" 
+                rows="5"
+                cols="40"
+                required>{{ message | default('') }}</textarea>
+                
+                <br><br>
+
+                <button type="submit">Send Email</button>
+            </form>
+        </main>
+    </div>
+    <script>
+        const GROUPS = {{ groups | tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
