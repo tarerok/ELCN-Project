@@ -3,25 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
     <title>Email Sent</title>
 </head>
 <body>
-    <h1>Email was successfully sent</h1>
-    
-    <h2>Review Email</h2>
-    <p style="white-space: pre-wrap;">Recipient(s)</p>
-    <ul>
-        {% for email in recipients %}
-        <li>{{ email }}</li>
-        {% endfor %}
-    </ul>
-    <p>Message</p>
-    <p style="white-space: pre-wrap;">{{message}}</p>
+    <div class="grid-container">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <h2>ELCN</h2>
+            </div>
 
-    <br><br>
-    <button><a href="/">Send another email</a></button>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+
+        </nav>
+    
+        <main class="content">
+            <h1>Email was successfully sent</h1>
+            <h2>Review Email</h2>
+            <p style="white-space: pre-wrap;">Recipient(s)</p>
+            <ul>
+                {% for email in recipients %}
+                <li>{{ email }}</li>
+                {% endfor %}
+            </ul>
+            <p>Message</p>
+            <p style="white-space: pre-wrap;">{{message}}</p>
+            <br><br>
+            <button><a href="/">Send another email</a></button>
+        </main>
+    </div>
     
     
 </body>

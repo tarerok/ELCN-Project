@@ -35,11 +35,15 @@ def home():
 
 @app.route("/send", methods=["POST"])
 def send_email():
+    print("SENDGRID_API_KEY:", os.getenv("SENDGRID_API_KEY"))
+
+    print("FORM DATA:", request.form)
+
     sendType = request.form.get("send_type")
     singleEmail = request.form.get("email")
     groupName = request.form.get("group")
     subject = request.form.get("subject")
-    messageText = request.form["message"]
+    messageText = request.form.get("message")
     
     if not subject or not messageText:
         return render_template(
@@ -109,10 +113,13 @@ def send_email():
             message=messageText
         )
 
-    except Exception:
+    except Exception as e:
+        print("SENDGRID ERROR:", e)
+
         return render_template(
             "index.html",
-            error="We couldn't send the email right now. Please try again later.",
+            error=f"SendGrid error: {e}",
+            # error="We couldn't send the email right now. Please try again later.",
             email=singleEmail,
             subject=subject,
             message=messageText,

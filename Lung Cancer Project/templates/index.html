@@ -32,7 +32,10 @@
             <!-- Simple form for sending email-->
             <!-- “When the user clicks submit, send the form data to /send using POST.” -->
 
-            
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+
             
             <form method="POST" action="/send">
                 <label>
