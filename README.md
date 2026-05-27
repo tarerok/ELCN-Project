@@ -2,6 +2,8 @@
 
 A functional outreach prototype created for the End Lung Cancer Now Association. This project focuses on organizing communication workflows and allowing users to manage email recipients through a simple dashboard interface.
 
+Figma Wireframes: https://www.figma.com/design/LMeEDNXiOt3qf2rTwS2nVo/ELCN-Program-Design?node-id=0-1&t=axE7BVwFssm4SGIS-1 
+
 ## Features
 
 - Dashboard prototype designed in Figma
